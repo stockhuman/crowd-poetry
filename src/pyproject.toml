@@ -1,0 +1,20 @@
+[project]
+name = "Crowd-Poetry"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Michael Hemingway",email = "mpghemingway@gmail.com"}
+]
+readme = "../README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "pyktok (>=0.0.30,<0.0.31)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[poetry.tools]
+package-mode = false
