@@ -14,3 +14,5 @@ UPDATE: The A20-OlinuXino-LIME2 is not powerful enough to run pyktok. I will be 
 ## Software - 2025.01.31
 
 It seems TikTok search is atrocious, by official and unofficial means. A better way of downloading content may be necessary. On the plus side, I can reliably search for and download TikTok video files.
+
+I will go ahead with this PoC implementation to then test the other component parts of this architecture. YouTube, Vimeo or other platforms may be necessary to pivot to in case reliable content surfacing isn't possible on TikTok.
