@@ -1,0 +1,1 @@
+from .scraper import fetch_filmot_data
