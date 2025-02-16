@@ -2,10 +2,10 @@ import yt_dlp
 
 OUTPUT_DIR = 'audio_clips'
 
-def download(video_id: str, start: int, end: int):
+def download(video_id: str, start: int, end: int, token: str):
   """Download audio clip from YouTube video."""
   url = f"https://www.youtube.com/watch?v={video_id}"
-  output_file = f"{OUTPUT_DIR}/{video_id}_{start}-{end}.mp3"
+  output_file = f"{OUTPUT_DIR}/{token}_{video_id}_{start}-{end}.mp3"
 
   def download_ranges_cb(info_dict, ydl):
     return [{"start_time": start, "end_time": end}]
