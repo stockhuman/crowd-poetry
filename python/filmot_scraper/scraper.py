@@ -28,10 +28,6 @@ def fetch_filmot_data(query: str, duration: int = 300):
             json_str = match.group(1)
 
             try:
-                # save resonse to file
-                with open("response.json", "w") as file:
-                    file.write(json_str)
-                # Parse JSON
                 data = json.loads(json_str)
                 return data
             except json.JSONDecodeError as e:
