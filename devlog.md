@@ -20,3 +20,7 @@ I will go ahead with this PoC implementation to then test the other component pa
 ## Software - 2025.02.10
 
 I've found https://filmot.com/, which offers a very compelling search product for almost exactly what I'm looking for, except it's YouTube-based and does not seem to offer an API. 3rd party projects exist to provide one, however. Upon investigation, it seems projects like [this](https://github.com/dusking/filmot) are abandonware and not implementable.
+
+## Software - 2025.02.16
+
+The technical challenge now is to get the audio clips _whittled down_ into morcels that actually represent the words being chosen. For this, OpenAI's whisper (available as FOSS locally and as a paid service at ~$0.006 per minute) as well as Vosk seem to be necessary to get far more accurate soundbytes out of YouTube files, which are downloading successfully.
