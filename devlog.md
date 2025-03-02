@@ -24,3 +24,9 @@ I've found https://filmot.com/, which offers a very compelling search product fo
 ## Software - 2025.02.16
 
 The technical challenge now is to get the audio clips _whittled down_ into morcels that actually represent the words being chosen. For this, OpenAI's whisper (available as FOSS locally and as a paid service at ~$0.006 per minute) as well as Vosk seem to be necessary to get far more accurate soundbytes out of YouTube files, which are downloading successfully.
+
+## Software - 2025.03.01
+
+The way the software stack is going, and the fact that I'm now processing YouTube videos primarily (though still hope to draw from other sources now as a stretch goal) - I've reconsidered the standalone device model. 
+
+Audio clips are being served by a FastAPI service implementation, and I've now turned my attention towards the physical device. Since a server will do the number crunching, I'm free to implement something considerably lighter in compute power. I have experience with the ESP-IDF framework with regard to audio, which could make this a very economical project, but I'm not sure I want to commit to that degree of programming without leaving room for design iteration.
