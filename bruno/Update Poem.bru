@@ -1,0 +1,19 @@
+meta {
+  name: Update Poem
+  type: http
+  seq: 4
+}
+
+post {
+  url: 127.0.0.1:8000/update-poem
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "poem": "enourmous pie longs for berries",
+    "latitude": 0.0,
+    "longitude": 0.0
+  }
+}

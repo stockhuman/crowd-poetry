@@ -1,12 +1,13 @@
 from os import makedirs, path, unlink
 from typing import Optional
 from fastapi import FastAPI, Request, staticfiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from random import choice
 from scraper import fetch_filmot_data
 from downloader import download
 from trim import trim, segment
-from db import create_tables, insert_mp3, fetch_mp3_files, fetch_mp3_by_keyword
+from db import create_tables, fetch_current_poem, insert_mp3, fetch_mp3_files, fetch_mp3_by_keyword, insert_poem
 
 app = FastAPI()
 
@@ -21,6 +22,15 @@ makedirs("audio_clips", exist_ok=True)
 
 # Mount the directory to serve MP3 files
 app.mount("/audio", staticfiles.StaticFiles(directory="audio_clips"), name="audio")
+
+# Enable CORS
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=["*"],
+  allow_credentials=True,
+  allow_methods=["*"],
+  allow_headers=["*"],
+)
 
 class SearchParameters(BaseModel):
   word: str
@@ -104,5 +114,33 @@ def known_word(request: Request,word):
       for entry in mp3_entries
     ]
     return {"status": "success", "data": formatted_entries}
+  except Exception as e:
+    return {"status": "error", "message": str(e)}
+
+@app.get("/current")
+def current(request: Request):
+  try:
+    poem = fetch_current_poem()
+    formatted_poem = {
+      "id": poem[0],
+      "poem": poem[1],
+      "latitude": poem[2],
+      "longitude": poem[3],
+      "timestamp": poem[4],
+    }
+    return {"status": "success", "data": formatted_poem}
+  except Exception as e:
+    return {"status": "error", "message": str(e)}
+  
+class PoemUpdateParameters(BaseModel):
+  poem: str
+  latitude: Optional[float] = .0
+  longitude: Optional[float] = .0
+
+@app.post("/update-poem")
+async def update_poem(params: PoemUpdateParameters):
+  try:
+    insert_poem(params.poem, params.latitude, params.longitude)
+    return {"status": "success", "data": "poem added"}
   except Exception as e:
     return {"status": "error", "message": str(e)}

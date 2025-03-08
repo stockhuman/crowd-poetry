@@ -84,6 +84,18 @@ def insert_mp3(file_path, keywords=None, video_id=None):
   return mp3_id
 
 
+# Fetch current (latest) poem
+def fetch_current_poem():
+  conn = create_connection()
+  cursor = conn.cursor()
+
+  cursor.execute("SELECT * FROM poems ORDER BY timestamp DESC LIMIT 1")
+  poem = cursor.fetchone()
+
+  conn.close()
+  return poem
+
+
 # Fetch poems
 def fetch_poems():
   conn = create_connection()
@@ -141,20 +153,3 @@ def fetch_mp3_by_keyword(keyword):
 
   conn.close()
   return mp3_files  # Returns a list of matching MP3 entries
-
-
-# Example Usage
-if __name__ == "__main__":
-  create_tables()  # Create the tables if they don't exist
-
-  # Insert some sample data
-  insert_poem("This is a test poem.", latitude=40.7128, longitude=-74.0060)
-  insert_mp3("path/to/file.mp3", keywords="test, example", video_id="12345")
-
-  # Fetch and print all poems
-  poems = fetch_poems()
-  print("Poems:", poems)
-
-  # Fetch and print all mp3 files
-  mp3_files = fetch_mp3_files()
-  print("MP3 Files:", mp3_files)
