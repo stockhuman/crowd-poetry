@@ -1,23 +1,36 @@
-from fastapi import FastAPI
+from os import makedirs, path
+from typing import Optional
+from fastapi import FastAPI, Request, staticfiles
 from pydantic import BaseModel
 from random import choice
 from scraper import fetch_filmot_data
 from downloader import download
 from trim import trim, segment
-from db import insert_mp3, fetch_mp3_files, fetch_mp3_by_keyword
+from db import create_tables, insert_mp3, fetch_mp3_files, fetch_mp3_by_keyword
 
 app = FastAPI()
 
+if __name__ == "__main__":
+  create_tables()
+  import uvicorn
+  uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+
+
+# Ensure the directory exists
+makedirs("audio_clips", exist_ok=True)
+
+# Mount the directory to serve MP3 files
+app.mount("/audio", staticfiles.StaticFiles(directory="audio_clips"), name="audio")
 
 class SearchParameters(BaseModel):
   word: str
-  duration: int | None = 300
-
+  duration: Optional[int] = 300
 
 @app.post("/search/")
-async def search_filmot(params: SearchParameters):
+async def search_filmot(request: Request, params: SearchParameters):
   try:
-    data = fetch_filmot_data(params.query, params.duration)
+    base_url = str(request.base_url)
+    data = fetch_filmot_data(params.word, params.duration)
     entries = list(data.items())
 
     # TODO: try again if failed to download, download another
@@ -33,14 +46,14 @@ async def search_filmot(params: SearchParameters):
       filepath = download(video_id, start_time, end_time, token)
       print(f"Audio file: {filepath}")
 
-      start, end = segment(filepath, params.query)
+      start, end = segment(filepath, params.word)
 
       if start is not None:
         trimmed_audio = trim(
-          filepath, start, end, f"audio_clips/trim_{params.query}_{video_id}.mp3"
+          filepath, start, end, f"audio_clips/trim_{params.word}_{video_id}.mp3"
         )
-        insert_mp3(trimmed_audio, params.query, video_id)
-        return {"status": "success", "data": trimmed_audio}
+        insert_mp3(trimmed_audio, params.word, video_id)
+        return {"status": "success", "data": f"{base_url}audio/{path.basename(trimmed_audio)}"}
       else:
         return {"status": "failed", "data": "trim error"}
 
@@ -52,17 +65,42 @@ async def search_filmot(params: SearchParameters):
 
 # Return all audio files presently available
 @app.get("/known")
-def known():
+def known(request: Request):
   try:
-    return {"status": "success", "data": fetch_mp3_files()}
+    base_url = str(request.base_url)
+    mp3_entries = fetch_mp3_files()
+    # Convert relative paths to full URLs
+    formatted_entries = [
+      {
+        "id": entry[0],
+        "file_url": f"{base_url}audio/{path.basename(entry[1])}",
+        "keyword": entry[2],
+        "video_id": entry[3],
+        "timestamp": entry[4],
+      }
+      for entry in mp3_entries
+    ]
+    return {"status": "success", "data":formatted_entries}
   except Exception as e:
     return {"status": "error", "message": str(e)}
 
 
 # Return all audio files presently available for a given word
 @app.get("/known/{word}")
-def known_word(word):
+def known_word(request: Request,word):
   try:
-    return {"status": "success", "data": fetch_mp3_by_keyword(word)}
+    base_url = str(request.base_url)
+    mp3_entries = fetch_mp3_by_keyword(word)
+    formatted_entries = [
+      {
+          "id": entry[0],
+          "file_url": f"{base_url}audio/{path.basename(entry[1])}",
+          "keyword": entry[2],
+          "video_id": entry[3],
+          "timestamp": entry[4],
+      }
+      for entry in mp3_entries
+    ]
+    return {"status": "success", "data": formatted_entries}
   except Exception as e:
     return {"status": "error", "message": str(e)}
