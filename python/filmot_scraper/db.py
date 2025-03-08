@@ -18,26 +18,30 @@ def create_tables():
 
   # Create "poems" table
   cursor.execute("""
-        CREATE TABLE IF NOT EXISTS poems (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            poem TEXT NOT NULL,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            latitude REAL,
-            longitude REAL
-        )
+      CREATE TABLE IF NOT EXISTS poems (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          poem TEXT NOT NULL,
+          timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+          latitude REAL,
+          longitude REAL
+      )
     """)
 
   # Create "mp3_files" table
   cursor.execute("""
-        CREATE TABLE IF NOT EXISTS mp3_files (
-            id TEXT PRIMARY KEY,
-            file_path TEXT NOT NULL,
-            keywords TEXT,
-            video_id TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-        CREATE INDEX IF NOT EXISTS idx_keywords ON mp3_files (keywords);
+      CREATE TABLE IF NOT EXISTS mp3_files (
+          id TEXT PRIMARY KEY,
+          file_path TEXT NOT NULL,
+          keywords TEXT,
+          video_id TEXT,
+          timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
     """)
+
+  # Create an index separately
+  cursor.execute("""
+      CREATE INDEX IF NOT EXISTS idx_keywords ON mp3_files (keywords);
+  """)
 
   conn.commit()
   conn.close()
