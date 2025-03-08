@@ -3,3 +3,4 @@ __pycache__
 audio_clips/
 vosk_models/
 /.vscode
+python/data.db
