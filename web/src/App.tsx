@@ -58,7 +58,7 @@ function App() {
         <p>This poem was made by visitors like you.</p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        Enter a poem and click "Submit" and see it reflected in the soundscape.
       </p>
     </>
   );
