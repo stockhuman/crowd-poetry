@@ -36,7 +36,7 @@ def segment(filepath: str, phrase: str):
       results.extend(final_result["result"])
     
     # Clean up
-    # os.remove(wav_path)
+    os.remove(wav_path)
 
     return find_word_timestamps(results, phrase)
 

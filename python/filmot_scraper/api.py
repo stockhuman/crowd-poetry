@@ -1,4 +1,4 @@
-from os import makedirs, path
+from os import makedirs, path, unlink
 from typing import Optional
 from fastapi import FastAPI, Request, staticfiles
 from pydantic import BaseModel
@@ -52,6 +52,8 @@ async def search_filmot(request: Request, params: SearchParameters):
         trimmed_audio = trim(
           filepath, start, end, f"audio_clips/trim_{params.word}_{video_id}.mp3"
         )
+        unlink(filepath)
+
         insert_mp3(trimmed_audio, params.word, video_id)
         return {"status": "success", "data": f"{base_url}audio/{path.basename(trimmed_audio)}"}
       else:
