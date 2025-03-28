@@ -30,3 +30,23 @@ The technical challenge now is to get the audio clips _whittled down_ into morce
 The way the software stack is going, and the fact that I'm now processing YouTube videos primarily (though still hope to draw from other sources now as a stretch goal) - I've reconsidered the standalone device model. 
 
 Audio clips are being served by a FastAPI service implementation, and I've now turned my attention towards the physical device. Since a server will do the number crunching, I'm free to implement something considerably lighter in compute power. I have experience with the ESP-IDF framework with regard to audio, which could make this a very economical project, but I'm not sure I want to commit to that degree of programming without leaving room for design iteration.
+
+## Hardware - 2025.03.08
+I've built a simple web front-end to alter the poem, and now I'm exploring design concepts for the physical device.
+
+
+## Hardware - 2025.03.20
+Hardware selection is now complete. The audio processing is to happen on a Teensy 4.0 and a associated Audio Shield, whilst the file fetching and server interactions are to be managed by an Orange Pi Zero.
+The selection of the Teensy is largely due to its DSP strengths and robust audio library support. Whilst I'm not an expert, I've had positive experiences with Paul Stoffregen's work and his online [pseudo-IDE](https://www.pjrc.com/teensy/gui/index.html). The ESP-EDF framework would've been cool, but likely too technically challenging for me to commit to exploratively, and theESP32 LyraT v4.1 board I had on hand did not have the pinouts I needed to power an external display or extra peripherals. It also was rather forma-facotr limiting given its footprint.
+
+![Orange Pi](./docs/orangepi.png)
+
+## Hardware - 2025.03.24
+
+Thank you, [Giuseppe](http://www.orangepi.org/orangepibbsen/forum.php?mod=viewthread&tid=2441)!  UART2 is `/dev/ttyS2` on the Orange Pi Zero. I'm now trying to get the last non-experiemntal piece of this puzzle working: communication of audio files from the Orange Pi to the Teensy. Explorations beyond paper and pencil in the design of the hardware are underway.
+
+![Draft design, a box](./docs/concept.png)
+
+## Software - 2025.03.27
+
+I've now got the audio file transfer working.
