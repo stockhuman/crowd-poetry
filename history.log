@@ -1,0 +1,278 @@
+    1  cd ~
+    2  pip -V
+    3  pip3 -V
+    4  python3 -m ensurepip --upgrade
+    5  python -m ensurepip --upgrade
+    6  sudo apt install python3-venv python3-pip
+    7  pip3 -V
+    8  python3 test.py 
+    9  pip install serial
+   10  sudo apt install python3-serial
+   11  python3 test.py 
+   12  cd ~
+   13  neofetch
+   14  sudo apt install neofetch
+   15  neofetch
+   16  sudo apt install -y build-essential cmake mesa-common-dev vulkan-headers vulkan-loader     ocl-icd-libopencl1 ocl-icd-dev opencl-headers freetype2-demos libandroid-wordexp-dev elfutils     libwayland-dev libxcb-randr0-dev libxcb1-dev libxrandr-dev libx11-dev libdrm-dev     libglib2.0-dev libdconf-dev libdbus-1-dev libxfconf-0-dev libsqlite3-dev rpm-devel     libmagick++-7-dev libmagick++-6.q16-dev libchafa-dev libgl1-mesa-dev libegl1-mesa-dev     libpulse-dev libddcutil-dev libelf-dev directx-headers zlib1g-dev
+   17  sudo apt install -y build-essential cmake mesa-common-dev vulkan-validationlayers libvulkan1 libvulkan-dev
+   18  sudo apt install -y ocl-icd-libopencl1 ocl-icd-dev opencl-headers freetype2-demos libandroid-wordexp-dev elfutils     libwayland-dev libxcb-randr0-dev libxcb1-dev libxrandr-dev libx11-dev libdrm-dev     libglib2.0-dev libdconf-dev libdbus-1-dev libxfconf-0-dev libsqlite3-dev rpm-devel     libmagick++-7-dev libmagick++-6.q16-dev libchafa-dev libgl1-mesa-dev libegl1-mesa-dev     libpulse-dev libddcutil-dev libelf-dev directx-headers zlib1g-dev
+   19  neofetch
+   20  sudo apt remove build-essential cmake mesa-common-dev vulkan-validationlayers libvulkan1 libvulkan-dev
+   21  sudo apt autoremove
+   22  apt install fastfetch
+   23  sudo apt install fastfetch
+   24  fastfetch
+   25  meofetch
+   26  neofetch
+   27  dmesg | grep tty
+   28  ls
+   29  cd /root
+   30  su root
+   31  cd ~
+   32  ls
+   33  nano test.py 
+   34  sudo chown mike:mike test.py
+   35  sudo nano test
+   36  sudo nano test.py 
+   37  python3 test.py 
+   38  sudo nano test.py 
+   39  python3 test.py 
+   40  sudo apt install -y avahi-daemon
+   41  cd /etc/avahi/services/
+   42  wget -c https://raw.githubusercontent.com/lathiat/avahi/master/avahi-daemon/sftp-ssh.service
+   43  sudo wget -c https://raw.githubusercontent.com/lathiat/avahi/master/avahi-daemon/sftp-ssh.service
+   44  sudo wget -c https://raw.githubusercontent.com/lathiat/avahi/master/avahi-daemon/ssh.service
+   45  cd -
+   46  service avahi-daemon restart
+   47  sudo service avahi-daemon restart
+   48  sudo apt update
+   49  git clone https://github.com/zhaolei/WiringOP.git -b h3
+   50  sudo apt install git
+   51  git clone https://github.com/zhaolei/WiringOP.git -b h3
+   52  cd WiringOP/
+   53  sudo bash build
+   54  gpio readall
+   55  cd ../
+   56  sudo nano test.py 
+   57  sudo apt update
+   58  sudo apt upgrade
+   59  sudo reboot
+   60  touch .asoundrc
+   61  nano .asoundrc 
+   62  ls
+   63  aplay sample.wav 
+   64  alsaconfig
+   65  aplay -l
+   66  sudo reboot
+   67  aplay -l
+   68  armbian-config
+   69  aplay -l
+   70  aplay sample.wav 
+   71  cat /etc/asound.conf 
+   72  sudo nano /etc/asound.conf 
+   73  aplay sample.wav 
+   74  aplay -l
+   75  aplay sample.wav 
+   76  lsmod | grep snd
+   77  lsmod
+   78  aplay -D plughw:0,0 sample.wav
+   79  alsamixer
+   80  alsamixer -c 0
+   81  aplay -D plughw:0,0 sample.wav
+   82  cat .bashrc
+   83  nano .bashrc
+   84  aplay sample.wav
+   85  aplay -D plughw:0,0 sample.wav
+   86  ls
+   87  cd glicol
+   88  ls
+   89  cd rc
+   90  cd rs
+   91  ls
+   92  cargo run --example hello
+   93  cd synth/
+   94  cargo run --example hello
+   95  cargo run --example sin
+   96  cargo run --example plot
+   97  cd ~
+   98  aplay sample.wav
+   99  sudo alsactl store
+  100  nano /etc/rc.local
+  101  sudo nano /etc/rc.local
+  102  sudo systemctl enable alsa-restore
+  103  alsactl restore
+  104  sudo alsactl restore
+  105  sudo cat /boot/orangepiEnv.txt | grep overlays
+  106  sudo apt update
+  107  sudo apt upgrade
+  108  cat .asoundrc 
+  109  nano .asoundrc 
+  110  cat /etc/asound.conf
+  111  aplay sample.wav
+  112  cd glicol/
+  113  ls
+  114  cd rs
+  115  ls
+  116  cd main
+  117  ls
+  118  cd examples
+  119  ls
+  120  cd ../
+  121  cd ~
+  122  mkdir jstest
+  123  node -v
+  124  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+  125  \. "$HOME/.nvm/nvm.sh"
+  126  nvm install 22
+  127  node -v # Should print "v22.14.0".
+  128  corepack enable pnpm
+  129  pnpm -v
+  130  ls
+  131  cd jstest/
+  132  pnpm install --save web-audio-api
+  133  pnpm approve-builds
+  134  npm run test-speaker
+  135  pnpm add glicol
+  136  nano test.js
+  137  node test.js 
+  138  ls
+  139  nano package.json 
+  140  node test.js 
+  141  nano package.json 
+  142  node test.js 
+  143  nano package.json 
+  144  npm add glicol web-audio-api
+  145  node test.js 
+  146  cd ../
+  147  rm -r jstest/
+  148  mkdir ts
+  149  cd ts
+  150  ls
+  151  npm i glicol web-audio-api
+  152  cd src
+  153  nano index.ts 
+  154  ls
+  155  cd ../
+  156  node-ts src/index.ts 
+  157  npm i
+  158  node-ts src/index.ts 
+  159  node node-ts src/index.ts 
+  160  npx node-ts src/index.ts 
+  161  pnpmx node-ts
+  162  tsc
+  163  ls
+  164  cat package
+  165  cat package.json 
+  166  npm run ts-node
+  167  ts-node
+  168  npm ts-node
+  169  npx ts-node
+  170  npx ts-node src/index.ts 
+  171  cat src/index.ts 
+  172  nano test.js
+  173  node test.js | aplay -f cd
+  174  sudo apt install supercollider
+  175  npm install supercolliderjs
+  176  nano doot.js
+  177  node doot.js 
+  178  cd /usr/local/bin/
+  179  ls
+  180  lssudo apt-get install git libjack-jackd2-dev libsndfile1-dev libasound2-dev libavahi-client-dev libreadline6-dev libfftw3-dev libxt-dev libudev-dev libcwiid-dev cmake qttools5-dev-tools libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev
+  181  sudo apt-get install git libjack-jackd2-dev libsndfile1-dev libasound2-dev libavahi-client-dev libreadline6-dev libfftw3-dev libxt-dev libudev-dev libcwiid-dev cmake qttools5-dev-tools libqt5webkit5-dev qtpositioning5-dev libqt5sensors5-dev
+  182  cd ~
+  183  git clone git://github.com/jackaudio/jack2 --depth 1
+  184  ls
+  185  sudo apt update
+  186  git clone git://github.com/jackaudio/jack2 --depth 1
+  187  git clone github.com/jackaudio/jack2 --depth 1
+  188  git clone https://github.com/jackaudio/jack2 --depth 1
+  189  cd jack2
+  190  ./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
+  191  sudo apt-get install python3
+  192  whereis python3
+  193  sudo ln -s /usr/bin/python3 /usr/bin/python
+  194  sudo apt install python-is-python3
+  195  ./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
+  196  sudo apt install clang
+  197  ./waf configure --alsa --libdir=/usr/lib/arm-linux-gnueabihf/
+  198  ./waf build
+  199  sudo ./waf install
+  200  sudo ldconfig
+  201  cd ..
+  202  rm -rf jack2
+  203  echo "@audio - memlock 256000" | sudo tee --append /etc/security/limits.conf
+  204  echo "@audio - rtprio 75" | sudo tee --append /etc/security/limits.conf
+  205  git clone --recursive https://github.com/supercollider/supercollider
+  206  cd supercollider
+  207  git submodule init && git submodule update
+  208  mkdir build && cd build
+  209   -DNATIVE=ON -DSC_WII=ON -DSC_IDE=OFF -DSC_QT=OFF -DSC_ED=OFF -DSC_EL=OFF -DSC_VIM=ON ..
+  210  cmake -L -DCMAKE_BUILD_TYPE="Release" -DBUILD_TESTING=OFF -DSUPERNOVA=OFF -DNATIVE=ON -DSC_WII=ON -DSC_IDE=OFF -DSC_QT=OFF -DSC_ED=OFF -DSC_EL=OFF -DSC_VIM=ON ..
+  211  make
+  212  cmake -L -DCMAKE_BUILD_TYPE="Release" -DBUILD_TESTING=OFF -DSUPERNOVA=OFF -DNATIVE=OFF -DSC_WII=ON -DSC_IDE=OFF -DSC_QT=OFF -DSC_ED=OFF -DSC_EL=OFF -DSC_VIM=ON ..
+  213  make
+  214  cd supercollider/build
+  215  sudo make install
+  216  sudo ldconfig
+  217  echo /usr/bin/jackd -P75 -dalsa -dhw:0 -r44100 -p1024 -n3 > ~/.jackdrc
+  218  sudo reboot
+  219  sclang
+  220  sudo sclang
+  221  ulimit -r
+  222  sudo nano /etc/security/limits.conf
+  223  sudo sclang
+  224  which sclang
+  225  which jackd
+  226  jackd -d alsa
+  227  dmesg | grep snd
+  228  ps aux | grep jackd
+  229  jack_lsp
+  230  killall -9 jackd
+  231  jackd -d alsa -d hw:0 -r 44100 -p 1024 -n 3
+  232  ulimit -r
+  233  sudo nano /etc/security/limits.d/audio.conf
+  234  sudo reboot
+  235  jackd -d alsa -d hw:0 -r 44100 -p 1024 -n 3
+  236  ulimit -l
+  237  ulimit -r
+  238  systemctl show -p DefaultLimitRTPRIO
+  239  systemctl show -p DefaultLimitMEMLOCK
+  240  sudo nano /etc/systemd/system.conf
+  241  free -m
+  242  jackd -d alsa -d hw:0 -r 44100 -p 1024 -n 3
+  243  sudo apt-get install puredata
+  244  jackd -d alsa -d hw:0 -r 44100 -p 1024 -n 3 -T
+  245  jackd -d alsa -d hw:0 -r 44100 -p 1024 -n 3 -s
+  246  sudo apt install jack2
+  247  ls
+  248  rm -rf supercollider/
+  249  rm -rf WiringOP/
+  250  ls
+  251  sudo apt install python3-pyaudio
+  252  lsblk -h
+  253  lsblk -o NAME,SIZE,TYPE,MOUNTPOINT
+  254  lsblk
+  255  nano audio.py
+  256  python3 audio.py sample.wav
+  257  sudo apt install alsa-utils
+  258  sudo apt install jack
+  259  ls
+  260  cd ts
+  261  ls
+  262  cat doot.js
+  263  cat test.js 
+  264  node test.js
+  265  cd ../
+  266  git clone https://github.com/ircam-ismm/node-web-audio-api.git
+  267  sudo apt install libasound2-dev
+  268  cd node-web-audio-api
+  269  npm install
+  270  npm run build
+  271  /home/mike/.rustup/toolchains/stable-armv7-unknown-linux-gnueabihf/bin/rustc --crate-name node_web_audio_api --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --diagnostic-width=169 --crate-type cdylib --emit=dep-info,link -C opt-level=3 -C lto --check-cfg 'cfg(docsrs,test)' C metadata=fc11ceaeabd163fe --out-dir /home/mike/node-web-audio-api/target/release/deps -C strip=symbols -L dependency=/home/mike/node-web-audio-api/target/release/deps --extern crossbeam_channel=/home/mike/node-web-audio-api/target/release/deps/libcrossbeam_channel-bfbba72d1727795e.rlib --extern napi=/home/mike/node-web-audio-api/target/release/deps/libnapi-aec997d2112d9548.rlib --extern napi_derive=/home/mike/node-web-audio-api/target/release/deps/libnapi_derive-96a50e74069dee0a.so --extern thread_priority=/home/mike/node-web-audio-api/target/release/deps/libthread_priority-dd8f7527a2505d8d.rlib --extern web_audio_api=/home/mike/node-web-audio-api/target/release/deps/libweb_audio_api-ea0dd2257a7216af.rlib -L native=/usr/lib/arm-linux-gnueabihf
+  272  /home/mike/.rustup/toolchains/stable-armv7-unknown-linux-gnueabihf/bin/rustc --crate-name node_web_audio_api --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --diagnostic-width=169 --crate-type cdylib --emit=dep-info,link -C opt-level=3 -C lto --check-cfg 'cfg(docsrs,test)' -C metadata=fc11ceaeabd163fe --out-dir /home/mike/node-web-audio-api/target/release/deps -C strip=symbols -L dependency=/home/mike/node-web-audio-api/target/release/deps --extern crossbeam_channel=/home/mike/node-web-audio-api/target/release/deps/libcrossbeam_channel-bfbba72d1727795e.rlib --extern napi=/home/mike/node-web-audio-api/target/release/deps/libnapi-aec997d2112d9548.rlib --extern napi_derive=/home/mike/node-web-audio-api/target/release/deps/libnapi_derive-96a50e74069dee0a.so --extern thread_priority=/home/mike/node-web-audio-api/target/release/deps/libthread_priority-dd8f7527a2505d8d.rlib --extern web_audio_api=/home/mike/node-web-audio-api/target/release/deps/libweb_audio_api-ea0dd2257a7216af.rlib -L native=/usr/lib/arm-linux-gnueabihf
+  273  npm run build
+  274  firefox
+  275  sudo apt install libjack-jackd2-dev
+  276  npm run build:jack
+  277  cd ../
+  278  history
