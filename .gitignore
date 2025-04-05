@@ -4,3 +4,4 @@ audio_clips/
 vosk_models/
 /.vscode
 python/data.db
+node2/node_modules/
