@@ -34,7 +34,6 @@ Audio clips are being served by a FastAPI service implementation, and I've now t
 ## Hardware - 2025.03.08
 I've built a simple web front-end to alter the poem, and now I'm exploring design concepts for the physical device.
 
-
 ## Hardware - 2025.03.20
 Hardware selection is now complete. The audio processing is to happen on a Teensy 4.0 and a associated Audio Shield, whilst the file fetching and server interactions are to be managed by an Orange Pi Zero.
 The selection of the Teensy is largely due to its DSP strengths and robust audio library support. Whilst I'm not an expert, I've had positive experiences with Paul Stoffregen's work and his online [pseudo-IDE](https://www.pjrc.com/teensy/gui/index.html). The ESP-EDF framework would've been cool, but likely too technically challenging for me to commit to exploratively, and theESP32 LyraT v4.1 board I had on hand did not have the pinouts I needed to power an external display or extra peripherals. It also was rather forma-facotr limiting given its footprint.
@@ -50,3 +49,28 @@ Thank you, [Giuseppe](http://www.orangepi.org/orangepibbsen/forum.php?mod=viewth
 ## Software - 2025.03.27
 
 I've now got the audio file transfer working.
+
+## Software - 2025.03.29
+
+Never mind that, audio transfer is not going to work between the two devices. I am exploring the [Glicol](https://glicol.org/) project, which is a live coding environment for musical expression. It seems promising, but it requires a web interface as it essentially binds Rust to Javascript's web audio API.
+
+[SuperCollider was also considered](https://gist.github.com/madskjeldgaard/8d5b2f0eeeb31fa53a922e6653fc703f).
+
+`node-web-audio-api` was briefly emplored, but the available implementations lacked a number of standard features.
+
+Well, here's the challenge in this project: how to get the audio clips _whittled down_ into morcels that actually represent the words being chosen, and then from there, getting them mixed and playable into something interesting. It is frustrating that I still have not completed the overall architecture of the project end-to-end.
+
+## Hardware - 2025.04.06
+I have abandoned the Orange Pi Zero and Teensy in favor of a Raspberry Pi 4. Software support and Realtime Linux are the two most important factors in my decision.
+
+## Software - 2025.04.10
+
+I'm now working on the Raspberry Pi 4 exclusively. Pure Data is running headless with ALSA, and Python is orchestrating dynamic sample playback through OSC. After some trial and error with JACK, .asoundrc, and pd flags, I’ve found a reliable startup configuration that plays a test tone and loads sample files on command. Audio playback is verified, and the system can now load and play individual WAV files with minimal latency.
+
+## Software - 2025.04.12
+
+Sample loading now works! Pure Data can be triggered via OSC from Python to play a sample located at a specific path. Communication is lightweight and effective. The patch is set up to receive /loadsample messages and play the corresponding file once. This proves the system's runtime dynamic audio capability and sets the stage for integration with the rest of the pipeline.
+
+## Hardware - 2025.04.13
+
+The Pi is being run from SSD for faster boot and responsiveness. Patchbox OS was considered but ruled out due to maintenance concerns. I'm manually optimizing for audio with ALSA and avoiding JACK for now. CPU and memory usage are low enough for comfortable runtime operation. Next steps are design integration and tying together sample fetching, parsing, and playback logic.
