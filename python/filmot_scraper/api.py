@@ -60,7 +60,7 @@ async def search_filmot(request: Request, params: SearchParameters):
 
       if start is not None:
         trimmed_audio = trim(
-          filepath, start, end, f"audio_clips/trim_{params.word}_{video_id}.mp3"
+          filepath, start, end, f"audio_clips/trim_{params.word}_{video_id}.wav"
         )
         unlink(filepath)
 
