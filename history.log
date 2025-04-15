@@ -276,3 +276,91 @@
   276  npm run build:jack
   277  cd ../
   278  history
+
+      1  sudo apt update
+    2  sudo apt upgrade
+    3  sudo apt update
+    4  sudo apt-get install jackd
+    5  echo 'deb http://download.opensuse.org/repositories/home:/plugdata/Raspbian_12/ /' | sudo tee /etc/apt/sources.list.d/home:plugdata.list
+    6  curl -fsSL https://download.opensuse.org/repositories/home:plugdata/Raspbian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_plugdata.gpg > /dev/null
+    7  sudo apt update
+    8  sudo apt install plugdata
+    9  sudo apt-get update --fix-missing
+   10  sudo apt install plugdata
+   11  sudo apt install neofetch
+   12  neofetch
+   13  sudo nano /etc/apt/sources.list.d/home:plugdata.list
+   14  echo 'deb http://download.opensuse.org/repositories/home:/plugdata/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/home:plugdata.list
+   15  curl -fsSL https://download.opensuse.org/repositories/home:plugdata/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_plugdata.gpg > /dev/null
+   16  sudo apt update
+   17  sudo apt install plugdata
+   18  sudo apt-get clean 
+   19  sudo apt-get update
+   20  sudo apt install plugdata
+   21  wget https://download.opensuse.org/repositories/home:/plugdata/Debian_12/arm64/plugdata_0.9.1+git.0.ab8db68d-1_arm64.deb
+   22  sudo dpkg -i plugdata_0.9.1+git.0.ab8db68d-1_arm64.deb
+   23  sudo apt-get install libgl1
+   24  sudo apt autoremove
+   25  sudo dpkg -i plugdata_0.9.1+git.0.ab8db68d-1_arm64.deb
+   26  plugdata
+   27  jackd -d alsa -d hw:0
+   28  sudo reboot
+   29  jackd -d alsa -d hw:0
+   30  neofetch
+   31  plugdata
+   32  nano /etc/asound.conf
+   33  sudo nano /etc/systemd/system/jackd.service
+   34  sudo systemctl daemon-reexec
+   35  sudo systemctl enable jackd
+   36  sudo systemctl start jackd
+   37  plugdata
+   38  sudo nano /etc/systemd/system/jackd.service
+   39  sudo systemctl restart jackd
+   40  systemctl daemon-reload
+   41  sudo systemctl restart jackd
+   42  plugdata
+   43  jackd -d alsa -d hw:1
+   44  jackd -d alsa -d hw:0
+   45  pd
+   46  sudo apt install puredata
+   47  sudo apt install puredata-core puredata-extra
+   48  nano tone.pd
+   49  pd -nogui tone.pd
+   50  aplay -l
+   51  pd -nogui -alsa -audiodev 0 tone.pd
+   52  alsamixer
+   53  speaker-test -c 2 -t sine
+   54  pd -nogui -jack tone.pd 
+   55  pd -nogui -jack -v tone.pd 
+   56  sudo systemctl stop jackd
+   57  pd -nogui -jack tone.pd 
+   58  pd -nogui tone.pd 
+   59  mv tone.pd sine.pd
+   60  pd -nogui -alsa -r 48000 -blocksize 512 sine.pd
+   61  pd -nogui -alsa -audiooutdev 0 sine.pd
+   62  aplay -l
+   63  pd -nogui -alsa -audiooutdev 0 sine.pd
+   64  pd -nogui -alsa -audiodev 0 sine.pd
+   65  pd -nogui -alsa -audiodev 0 -r 48000 -blocksize 512 sine.pd
+   66  alsamixer
+   67  pkill jackd
+   68  pd -verbose -nogui -alsa -audiodev 0 sine.pd
+   69  pd -alsa -nogui -alsaadd "plughw:0,0" sine.pd
+   70  pd -alsa -nogui -audioadddev "plughw:0,0" sine.pd
+   71  pd -alsa -nogui -audioadddev "hw:0,0" sine.pd
+   72  pd -nogui -alsa -audiodev 0 -send "pd dsp 1" sine.pd
+   73  nano ~/.asoundrc
+   74  pd -nogui sine.pd
+   75  pd -nogui -alsa -audiooutdev hw:0,0 sine.pd
+   76  pd -nogui -alsa -audiodev 0 -send "pd dsp 1" sine.pd
+   77  pd -nogui -alsa -audiodev 0 sine.pd
+   78  pd -nogui -alsa -audiodev 0 -send "pd dsp 1" sine.pd
+   79  pd -nogui -alsa -audiodev 0 sine.pd
+   80  netfetch
+   81  neofetch
+   82  sudo rpi-eeprom-update
+   83  raspi-config
+   84  sudo raspi-config
+   85  sudo rpi-eeprom-update -a
+   86  sudo reboot
+   87  history
