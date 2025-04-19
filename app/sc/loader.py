@@ -2,7 +2,7 @@ import time
 import os
 from pythonosc.udp_client import SimpleUDPClient
 
-WATCH_DIR = "/home/mike/samples"
+WATCH_DIR = "../python/audio_clips"
 PD_ADDRESS = "127.0.0.1"
 PD_PORT = 57120  # must match SuperCollider's UDP port
 
@@ -16,7 +16,7 @@ while True:
     new_files = files - loaded_files
 
     for f in sorted(new_files):
-        full_path = os.path.join(WATCH_DIR, f)
+        full_path = os.path.abspath(os.path.join(WATCH_DIR, f))
         print(f"Sending load command for: {full_path}")
         client.send_message("/loadsample", full_path)
 
