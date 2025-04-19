@@ -27,8 +27,8 @@ function App() {
   }, []);
 
   const updatePoem = async (newpoem: string) => {
-    // fetch samples of each word from the API
-    const words = newpoem.split(" ");
+    // fetch samples of each word from the API, removing special characters
+    const words = newpoem.split(" ").map((w) => w.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""));
     const sample_urls = [];
     for (let i = 0; i < words.length; i++) {
       sample_urls.push(`${API}/known/${words[i]}`);
