@@ -1,28 +1,64 @@
 (
 s.waitForBoot {
-    // Create 5 empty buffers
-    ~buffers = Array.fill(5, { Buffer.alloc(s, 1, 1) });
+    ~maxBuffers = 10;
+    ~buffers = Array.fill(~maxBuffers, { Buffer.alloc(s, 1, 1) });
     ~bufIndex = 0;
 
-    // SynthDef for playback
-    SynthDef(\playbuf, {
-        |buf, amp = 0.5|
-        var sig = PlayBuf.ar(1, buf, BufRateScale.kr(buf), doneAction: 2);
-        Out.ar(0, sig * amp ! 2);
+    // Granular SynthDef
+    SynthDef(\grainPlay, {
+        |buf, rate = 1, dur = 0.1, density = 20, amp = 0.5, pan = 0.0|
+        var trig, pos, sig;
+
+        trig = Impulse.kr(density);
+        pos = TRand.kr(0, BufDur.kr(buf), trig);
+
+        sig = TGrains.ar(
+            2,
+            trig,
+            buf,
+            rate,
+            pos,
+            dur,
+            pan,
+            amp
+        );
+
+        Out.ar(0, sig);
     }).add;
 
-    // Function to load sample
+    // Sample loader
     ~loadSample = { |path|
-        var bufnum = ~bufIndex % ~buffers.size;
-        ~buffers[bufnum].free; // free old buffer just in case
+        var bufnum = ~bufIndex % ~maxBuffers;
+        ~buffers[bufnum].free;
         ~buffers[bufnum] = Buffer.read(s, path, action: {
             "Loaded % into buffer %".format(path, bufnum).postln;
-            Synth(\playbuf, [\buf, ~buffers[bufnum].bufnum]);
         });
         ~bufIndex = ~bufIndex + 1;
     };
 
-    // OSC listener
+    // Random grain loop spawner
+    ~grainLoop = Routine {
+        inf.do {
+            var valid = ~buffers.select({ |b| b.numFrames > 1 });
+            if (valid.notEmpty) {
+                var buf = valid.choose;
+
+                Synth(\grainPlay, [
+                    \buf, buf.bufnum,
+                    \rate, [-1, -0.5, 0.5, 1, 1.5].choose,
+                    \dur, 0.03 + 0.1.rand,
+                    \density, 10 + 40.rand,
+                    \amp, 0.2 + 0.3.rand,
+                    \pan, -1.0 + 2.0.rand
+                ]);
+            };
+            (5 + 5.rand).wait; // wait time before next grain cloud
+        }
+    };
+
+    ~grainLoop.play;
+
+    // OSC sample loader
     ~oscFunc = OSCdef.new(
         \loadsample,
         { |msg|
@@ -34,6 +70,6 @@ s.waitForBoot {
         recvPort: 57120
     );
 
-    "Sampler ready on port 57120".postln;
+    "Granular loop engine running on port 57120".postln;
 };
 )
