@@ -62,7 +62,7 @@ def trim(filepath: str, start: int, end: int, output_file: str):
   """Trim audio clip by start and end time."""
   audio = AudioSegment.from_file(filepath)
   trimmed = audio[start * 1000 - 100 : end * 1000 + 100]
-  trimmed.export(output_file, format="wav")
+  trimmed.export(output_file, format="wav", parameters=["-ac", "1"])
   return output_file
 
 def convert_to_wav(filepath: str) -> str:

@@ -7,7 +7,7 @@ from random import choice
 from scraper import fetch_filmot_data
 from downloader import download
 from trim import trim, segment
-from db import create_tables, fetch_current_poem, insert_mp3, fetch_mp3_files, fetch_mp3_by_keyword, insert_poem
+from db import create_tables, fetch_current_poem, insert_audio, fetch_audio_files, fetch_mp3_by_keyword, insert_poem
 
 app = FastAPI()
 
@@ -64,7 +64,7 @@ async def search_filmot(request: Request, params: SearchParameters):
         )
         unlink(filepath)
 
-        insert_mp3(trimmed_audio, params.word, video_id)
+        insert_audio(trimmed_audio, params.word, video_id)
         return {"status": "success", "data": f"{base_url}audio/{path.basename(trimmed_audio)}"}
       else:
         return {"status": "failed", "data": "trim error"}
@@ -72,6 +72,7 @@ async def search_filmot(request: Request, params: SearchParameters):
     else:
       return {"status": "failed", "data": "no results"}
   except Exception as e:
+    print(e)
     return {"status": "error", "message": str(e)}
 
 
@@ -80,7 +81,7 @@ async def search_filmot(request: Request, params: SearchParameters):
 def known(request: Request):
   try:
     base_url = str(request.base_url)
-    mp3_entries = fetch_mp3_files()
+    mp3_entries = fetch_audio_files()
     # Convert relative paths to full URLs
     formatted_entries = [
       {
@@ -130,6 +131,7 @@ def current(request: Request):
     }
     return {"status": "success", "data": formatted_poem}
   except Exception as e:
+    print(e)
     return {"status": "error", "message": str(e)}
   
 class PoemUpdateParameters(BaseModel):
@@ -143,4 +145,5 @@ async def update_poem(params: PoemUpdateParameters):
     insert_poem(params.poem, params.latitude, params.longitude)
     return {"status": "success", "data": "poem added"}
   except Exception as e:
+    print(e)
     return {"status": "error", "message": str(e)}

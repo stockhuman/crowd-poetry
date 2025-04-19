@@ -65,7 +65,7 @@ def insert_poem(poem, latitude=None, longitude=None):
 
 
 # Insert a new MP3 file entry
-def insert_mp3(file_path, keywords=None, video_id=None):
+def insert_audio(file_path, keywords=None, video_id=None):
   conn = create_connection()
   cursor = conn.cursor()
 
@@ -109,7 +109,7 @@ def fetch_poems():
 
 
 # Fetch MP3 files
-def fetch_mp3_files():
+def fetch_audio_files():
   conn = create_connection()
   cursor = conn.cursor()
 
