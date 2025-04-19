@@ -18,4 +18,5 @@ echo export QT_QPA_PLATFORM=offscreen > ~/.bashrc
 echo export PATH="~/.local/bin:$PATH" > ~/.bashrc
 curl -sSL https://install.python-poetry.org | python3 -
 source ~/.bashrc
+git clone https://github.com/stockhuman/crowd-poetry.git
 ```
