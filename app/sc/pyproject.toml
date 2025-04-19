@@ -1,13 +1,14 @@
 [project]
-name = "puredata"
+name = "supercollider-send"
 version = "0.1.0"
 description = ""
 authors = [
     {name = "Michael Hemingway",email = "mpghemingway@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
+    "python-osc (>=1.9.3,<2.0.0)"
 ]
 
 

@@ -1,11 +1,10 @@
-# pd_loader.py
 import time
 import os
 from pythonosc.udp_client import SimpleUDPClient
 
 WATCH_DIR = "/home/mike/samples"
 PD_ADDRESS = "127.0.0.1"
-PD_PORT = 8000  # must match Pd's [netreceive]
+PD_PORT = 57120  # must match SuperCollider's UDP port
 
 client = SimpleUDPClient(PD_ADDRESS, PD_PORT)
 loaded_files = set()

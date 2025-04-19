@@ -1,1 +1,0 @@
-This collection of loose scripts scrapes Filmot, downloads the retieved audio files and serves them.
