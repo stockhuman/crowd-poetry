@@ -10,8 +10,13 @@ fi
 #  Ensure SuperCollider is installed
 if ! command -v sclang &> /dev/null
 then
-  echo "SuperCollider is not installed. Please install it first."
-  exit 1
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Continue if MacOS
+    echo "SuperCollider install not detected."
+  else
+    echo "SuperCollider is not installed. Please install it first."
+    exit 1
+  fi
 fi
 
 #  Ensure Python is installed

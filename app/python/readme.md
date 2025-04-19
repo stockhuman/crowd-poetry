@@ -5,7 +5,7 @@ This collection of loose scripts scrapes Filmot, downloads the retrieved audio f
 ```bash
 cd python
 poetry env use 3.9.0
-poetry install
+poetry install --no-root
 ```
 
 ## Usage
