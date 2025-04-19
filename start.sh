@@ -29,8 +29,9 @@ fi
 #  Ensure Node.js is installed
 if ! command -v node &> /dev/null
 then
-  echo "Node.js is not installed. Please install it first."
-  exit 1
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+  \. "$HOME/.nvm/nvm.sh"
+  nvm install 22
 fi
 
 echo "Starting services..."
