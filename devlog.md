@@ -74,3 +74,27 @@ Sample loading now works! Pure Data can be triggered via OSC from Python to play
 ## Hardware - 2025.04.13
 
 The Pi is being run from SSD for faster boot and responsiveness. Patchbox OS was considered but ruled out due to maintenance concerns. I'm manually optimizing for audio with ALSA and avoiding JACK for now. CPU and memory usage are low enough for comfortable runtime operation. Next steps are design integration and tying together sample fetching, parsing, and playback logic.
+
+
+## Software - 2025.04.14
+
+Attempted to build the ELSE library for Pure Data to support dynamic control structures (count, join). Initial steps:
+Eventually abandoned this approach after hitting build issues and system-level clutter. Considered PlugData as an alternative but dropped it due to maintenance overhead on RPi.
+
+## Software - 2025.04.15
+
+Switched to SuperCollider as an audio engine. Installed via apt, then removed and built from source for headless use:
+Cloned supercollider repo and built with options to disable IDE and GUI (-DSC_IDE=OFF -DNO_X11=ON)
+Wrote a minimal .scd script to play loaded WAV files. Playback worked, but audio was extremely distorted. Verified:
+  - 48kHz sample rate
+  - 16-bit mono WAVs
+  - ALSA output
+  - JACK server was active
+
+Suspected RPi's internal DAC was introducing distortion.
+
+## Software - 2025.04.16
+
+Consulted repo notes and found that dithering with JACK (-zs flag) could improve audio quality. After further tweaking, found a .jackdrc config that fixed playback quality: `-P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 -o2 -zs`. THis has resolved most audible distortion coming from the built-in output.SuperCollider now plays dynamically assigned samples over OSC without artifacts, as before this tweak it was an unusable mess of screetching.
+
+This concludes a multi-day audio backend configuration process. Next steps are integrating control flow and layering logic, aka the aesthetics. In the meantime, I've also started on an enclosure.
