@@ -14,7 +14,7 @@ sudo apt install git -y
 git clone https://github.com/stockhuman/crowd-poetry.git
 
 # Service (Web interface, DB) only
-sudo apt install ffmpeg -y
+sudo apt install ffmpeg nginx certbot python3-certbot-nginx ufw -y
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22

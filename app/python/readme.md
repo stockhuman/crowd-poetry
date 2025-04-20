@@ -3,6 +3,7 @@ This collection of loose scripts scrapes Filmot, downloads the retrieved audio f
 
 ## Setup
 ```bash
+sudo apt install ffmpeg -y
 cd python
 poetry env use 3.9.0
 poetry install --no-root
