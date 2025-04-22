@@ -15,6 +15,11 @@ git clone https://github.com/stockhuman/crowd-poetry.git
 
 # Service (Web interface, DB) only
 sudo apt install ffmpeg nginx certbot python3-certbot-nginx ufw -y
+mkdir -p ~/crowd-poetry/app/python/vosk_models
+cd ~/crowd-poetry/app/python/vosk_models
+wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+unzip vosk-model-small-en-us-0.15.zip
+rm vosk-model-small-en-us-0.15.zip
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22
@@ -55,9 +60,4 @@ sudo systemctl enable alsa-restore
 echo /usr/bin/jackd -P75 -dalsa -dhw:0 -r44100 -p1024 -n3 -o2 -sz > ~/.jackdrc
 echo export QT_QPA_PLATFORM=offscreen > ~/.bashrc
 source ~/.bashrc
-mkdir -p ~/crowd-poetry/app/python/vosk_models
-cd ~/crowd-poetry/app/python/vosk_models
-wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
-unzip vosk-model-small-en-us-0.15.zip
-rm vosk-model-small-en-us-0.15.zip
 ```

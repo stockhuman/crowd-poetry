@@ -17,5 +17,5 @@ sclang sampler.scd
 ```
 
 ## Notes
-`QT_QPA_PLATFORM=offscreen sclang` is required to run on headless Linux.
+`QT_QPA_PLATFORM=offscreen` is required to run scalng on headless Linux (export in .bashrc).
 `jackd -P75 -dalsa -dhw:0 -zs  -p1024 -n3 -s -r44100` is required to be set in .jackdrc, with special attention to `-sz` dithering.
