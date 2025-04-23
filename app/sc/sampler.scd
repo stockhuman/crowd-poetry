@@ -6,7 +6,7 @@ s.waitForBoot {
 
     // Granular SynthDef
     SynthDef(\grainPlay, {
-        |buf, rate = 1, dur = 0.1, density = 20, amp = 0.5, pan = 0.0|
+        |buf, rate = 1, dur = 0.1, density = 15, amp = 0.5, pan = 0.0|
         var trig, pos, sig;
 
         trig = Impulse.kr(density);
@@ -45,9 +45,9 @@ s.waitForBoot {
 
                 Synth(\grainPlay, [
                     \buf, buf.bufnum,
-                    \rate, [-1, -0.5, 0.5, 1, 1.5].choose,
-                    \dur, 0.03 + 0.1.rand,
-                    \density, 10 + 40.rand,
+                    \rate, [-1, -0.5, 0.5, 1].choose,
+                    \dur, 0.1 + 0.1.rand,
+                    \density, 5 + 10.rand,
                     \amp, 0.2 + 0.3.rand,
                     \pan, -1.0 + 2.0.rand
                 ]);
