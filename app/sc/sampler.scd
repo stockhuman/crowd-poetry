@@ -26,12 +26,43 @@ s.waitForBoot {
         Out.ar(0, sig);
     }).add;
 
+    SynthDef(\bedlayer, {
+        |buf, amp = 0.2, rate = 0.05, cutoff = 500|
+        var sig;
+
+        sig = PlayBuf.ar(1, buf, BufRateScale.kr(buf) * rate, loop: 1);
+        sig = LPF.ar(sig, cutoff);  // Low-pass to unify tone
+        sig = sig ! 2; // stereo
+        sig = sig * amp;
+
+        Out.ar(0, sig);
+    }).add;
+
+    ~startBed = {
+        var recentBuf = ~buffers[(~bufIndex - 1) % ~buffers.size];
+        if (recentBuf.numFrames > 1) {
+            Synth(\bedlayer, [
+                \buf, recentBuf.bufnum,
+                \rate, 0.02 + 0.03.rand,
+                \amp, 0.1,
+                \cutoff, 300 + 500.rand
+            ]);
+            "Bed layer started with buffer %".format(recentBuf.bufnum).postln;
+        } {
+            "No valid buffer yet for bed layer.".postln;
+        }
+    };
+
     // Sample loader
     ~loadSample = { |path|
         var bufnum = ~bufIndex % ~maxBuffers;
         ~buffers[bufnum].free;
         ~buffers[bufnum] = Buffer.read(s, path, action: {
             "Loaded % into buffer %".format(path, bufnum).postln;
+            // If this is every 4th sample, start new bed
+            if (~bufIndex % 4 == 0) {
+                ~startBed.();
+            };
         });
         ~bufIndex = ~bufIndex + 1;
     };
