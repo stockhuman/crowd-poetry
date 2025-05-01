@@ -95,6 +95,15 @@ Suspected RPi's internal DAC was introducing distortion.
 
 ## Software - 2025.04.16
 
-Consulted repo notes and found that dithering with JACK (-zs flag) could improve audio quality. After further tweaking, found a .jackdrc config that fixed playback quality: `-P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 -o2 -zs`. THis has resolved most audible distortion coming from the built-in output.SuperCollider now plays dynamically assigned samples over OSC without artifacts, as before this tweak it was an unusable mess of screetching.
+Consulted repo notes and found that dithering with JACK (-zs flag) could improve audio quality. After further tweaking, found a .jackdrc config that fixed playback quality: `-P75 -p16 -dalsa -dhw:0 -r44100 -p1024 -n3 -o2 -zs`. This has resolved most audible distortion coming from the built-in output. SuperCollider now plays dynamically assigned samples over OSC without artifacts, as before this tweak it was an unusable mess of screetching.
 
 This concludes a multi-day audio backend configuration process. Next steps are integrating control flow and layering logic, aka the aesthetics. In the meantime, I've also started on an enclosure.
+
+## Hardware - 2025.04.17
+
+I've built a prototype enclosure for the Raspberry Pi 4. It's a rather simple box with port holes and "Crowd Poetry" written on the front. I planned on making a tall cap for the SSD but I may separate that into another housing with a speaker.
+
+## Infrastructure - 2025.04.18
+
+Everything is managed from pm2, a process manager for Node.js. It calls the Loader script, a Tailscale tunnel, the backend API,and the SuperCollider server. Some basic infrastructure is in place so that crowd-poetry.michaelhemingway.com exposes the frontend, tunneling to the Pi itself. This is running on a Digital Ocean droplet, but could (and should) be a static site / A record.
+Some issues persist in the loader starting up far before the sclang server is ready to receive OSC messages. With manual rebooting in an installation context, however, this is a non-issue.
