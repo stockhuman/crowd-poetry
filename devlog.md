@@ -36,7 +36,7 @@ I've built a simple web front-end to alter the poem, and now I'm exploring desig
 
 ## Hardware - 2025.03.20
 Hardware selection is now complete. The audio processing is to happen on a Teensy 4.0 and a associated Audio Shield, whilst the file fetching and server interactions are to be managed by an Orange Pi Zero.
-The selection of the Teensy is largely due to its DSP strengths and robust audio library support. Whilst I'm not an expert, I've had positive experiences with Paul Stoffregen's work and his online [pseudo-IDE](https://www.pjrc.com/teensy/gui/index.html). The ESP-EDF framework would've been cool, but likely too technically challenging for me to commit to exploratively, and theESP32 LyraT v4.1 board I had on hand did not have the pinouts I needed to power an external display or extra peripherals. It also was rather forma-facotr limiting given its footprint.
+The selection of the Teensy is largely due to its DSP strengths and robust audio library support. Whilst I'm not an expert, I've had positive experiences with Paul Stoffregen's work and his online [pseudo-IDE](https://www.pjrc.com/teensy/gui/index.html). The ESP-ADF framework would've been cool, but likely too technically challenging for me to commit to exploratively, and the ESP32 LyraT v4.1 board I had on hand did not have the pinouts I needed to power an external display or extra peripherals. It also was rather forma-facotr limiting given its footprint.
 
 ![Orange Pi](./docs/orangepi.png)
 
@@ -74,7 +74,6 @@ Sample loading now works! Pure Data can be triggered via OSC from Python to play
 ## Hardware - 2025.04.13
 
 The Pi is being run from SSD for faster boot and responsiveness. Patchbox OS was considered but ruled out due to maintenance concerns. I'm manually optimizing for audio with ALSA and avoiding JACK for now. CPU and memory usage are low enough for comfortable runtime operation. Next steps are design integration and tying together sample fetching, parsing, and playback logic.
-
 
 ## Software - 2025.04.14
 
